@@ -1,16 +1,16 @@
 // import 'dotenv/config'
 import { Hono } from 'hono';
+import { serve } from '@hono/node-server'
+import { cors } from 'hono/cors'
+import { zValidator } from '@hono/zod-validator';
 import { db, schema } from '@repo/db-adapter';
 import { add } from '@repo/db-adapter/add';
-// import { serve } from '@hono/node-server'
-// import { createUserService } from '@repo/db/services/users';
-// import { usersInsertSchema } from '@repo/db/schema/users'; // Add this import
-// import { zValidator } from '@hono/zod-validator';
-import { cors } from 'hono/cors'
+import { createUserService } from '@repo/db-adapter/services/users';
+import { usersInsertSchema } from '@repo/db-adapter/schema/users';
 
 const app = new Hono();
 app.use('/api/*', cors())
-// const { getUsers, getUserById, createUser } = createUserService(db);
+const { getUsers, getUserById, createUser } = createUserService(db);
 
 app.get('/', (c) => {
     // const result = dbAdapter.query('SELECT * FROM users');

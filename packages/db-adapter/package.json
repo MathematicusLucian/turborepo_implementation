@@ -16,6 +16,14 @@
             "types": "./src/index.ts",
             "default": "./dist/index.js"
         },
+        "./services/*": {
+            "types": "./src/services/*.ts",
+            "default": "./dist/services/*.js"
+        },
+        "./schema/*": {
+            "types": "./src/schema/*.ts",
+            "default": "./dist/schema/*.js"
+        },
         "./add": {
             "types": "./src/add/add.ts",
             "default": "./dist/add/add.js"
