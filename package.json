@@ -1,0 +1,47 @@
+{
+  "name": "Turborepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "build": "turbo build",
+    "build:1": "dotenv -- turbo run build",
+    "build:all": "turbo run build  --include-dependencies",
+    "dev": "turbo dev --parallel",
+    "dev:2": "dotenv -- turbo run dev --parallel",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo lint",
+    "lint:2": "eslint .",
+    "lint:turbo": "turbo run lint",
+    "lint:api": "turbo run lint --filter='./apps/api'",
+    "lint:next": "turbo run lint --filter='./apps/nextjs'",
+    "lint:core": "turbo run lint --filter='./packages/core'",
+    "lint:db": "turbo run lint --filter='./packages/db'",
+    "lint:ui": "turbo run lint --filter='./packages/ui'",
+    "lint:tsconfig": "turbo run lint --filter='./packages/tsconfig'",
+    "start:apps": "turbo run start --parallel --filter='./apps/*'",
+    "start": "turbo run start --parallel",
+    "start:api": "turbo run start --filter='./apps/api'",
+    "start:next": "turbo run start --filter='./apps/nextjs'",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db": "pnpm --filter @repo/db db",
+    "ui": "pnpm --filter @repo/ui ui",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "prettier": "catalog:",
+    "turbo": "2.1.1"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20.17.0"
+  },
+  "volta": {
+    "node": "20.17.0",
+    "pnpm": "9.12.0"
+  }
+}

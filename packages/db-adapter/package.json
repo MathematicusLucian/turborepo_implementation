@@ -1,0 +1,21 @@
+{
+    "name": "@repo/db-adapter",
+    "type": "module",
+    "scripts": {
+        "build": "tsc"
+    },
+    "exports": {
+        ".": {
+            "types": "./src/add.ts",
+            "default": "./dist/add.js"
+        },
+        "./add": {
+            "types": "./src/add.ts",
+            "default": "./dist/add.js"
+        }
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "workspace:*",
+        "typescript": "latest"
+    }
+}

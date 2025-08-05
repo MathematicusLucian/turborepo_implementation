@@ -1,0 +1,22 @@
+{
+    "name": "hono-app",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "wrangler dev src/index.ts --port 3003",
+        "deploy": "wrangler deploy --minify src/index.ts"
+    },
+    "dependencies": {
+        "@repo/db-adapter": "workspace:*",
+        "@hono/node-server": "^1.13.1",
+        "@hono/zod-validator": "^0.3.0",
+        "@cloudflare/workers-types": "^4.20240405.0",
+        "hono": "^4.6.3",
+        "wrangler": "^3.47.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.17",
+        "@types/pg": "^8.11.10",
+        "tsx": "^4.7.1"
+    }
+}
