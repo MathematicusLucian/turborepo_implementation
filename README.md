@@ -17,3 +17,6 @@ The project is organized as a monorepo with the following main components:
 ## Commands
 
 `pnpm add turbo --global`
+
+`pnpm install --force` → sources, fetches, reinstalls secondary deps fresh
+pnpm update (updates and sources all deps, incl. secondary)

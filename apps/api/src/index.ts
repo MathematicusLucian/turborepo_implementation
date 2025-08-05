@@ -1,16 +1,15 @@
-import { Hono } from 'hono';
-import { add } from '@repo/db-adapter';
 // import 'dotenv/config'
+import { Hono } from 'hono';
+import { db, schema } from '@repo/db-adapter';
+import { add } from '@repo/db-adapter/add';
 // import { serve } from '@hono/node-server'
-// import { Hono } from 'hono'
-// import { db, schema } from '@repo/db';
 // import { createUserService } from '@repo/db/services/users';
 // import { usersInsertSchema } from '@repo/db/schema/users'; // Add this import
 // import { zValidator } from '@hono/zod-validator';
-// import { cors } from 'hono/cors'
+import { cors } from 'hono/cors'
 
 const app = new Hono();
-// app.use('/api/*', cors())
+app.use('/api/*', cors())
 // const { getUsers, getUserById, createUser } = createUserService(db);
 
 app.get('/', (c) => {
