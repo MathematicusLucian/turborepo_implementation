@@ -2,20 +2,35 @@
     "name": "@repo/db-adapter",
     "type": "module",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "db:export": "tsx ./front/export.ts",
+        "db:generate": "drizzle-kit generate",
+        "db:generate:front": "drizzle-kit generate --config ./front/drizzle.config.ts",
+        "db:generate:all": "pnpm run db:generate && pnpm run db:generate:front && pnpm run db:export",
+        "db:migrate": "dotenv -e ../../.env -- drizzle-kit migrate",
+        "db:seed": "dotenv -e ../../.env -- tsx ./seeder.ts"
     },
     "exports": {
         ".": {
-            "types": "./src/add.ts",
-            "default": "./dist/add.js"
+            "types": "./src/index.ts",
+            "default": "./dist/index.js"
         },
         "./add": {
-            "types": "./src/add.ts",
-            "default": "./dist/add.js"
+            "types": "./src/add/add.ts",
+            "default": "./dist/add/add.js"
         }
+    },
+    "dependencies": {
+        "drizzle-orm": "^0.33.0",
+        "drizzle-zod": "^0.5.1",
+        "pg": "^8.13.0"
     },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",
+        "@types/node": "^22.7.4",
+        "@types/pg": "^8.11.10",
+        "drizzle-kit": "^0.24.2",
         "typescript": "latest"
     }
 }

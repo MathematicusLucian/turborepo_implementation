@@ -2,14 +2,23 @@
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "./dist/",
     "paths": {
       "@repo/db-adapter/*": [
         "./dist/*"
       ]
-    }
+    },
+    "module": "ESNext", // required for ESM
+    "moduleResolution": "bundler", // ensures .js extension in imports
+    "noEmit": false, // ensure build emits output
+    "outDir": "./dist/",
+    "rootDir": "./src",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true
   },
-  "main": "dist/add.js",
+  "main": "dist/index.js",
   "include": [
     "src"
   ],
