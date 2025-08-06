@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
+import { IdbFs, PGlite, PGliteInterface } from "@electric-sql/pglite";
 import { DataWorkerProvider } from "@/providers/dataWorker";
 
 export const metadata: Metadata = {
@@ -20,9 +21,9 @@ export default function RootLayout({
             <body
                 suppressHydrationWarning
             >
-                <DataWorkerProvider>
-                    {children}
-                </DataWorkerProvider>
+                {/* <DataWorkerProvider> */}
+                {children}
+                {/* </DataWorkerProvider> */}
             </body>
         </html>
     );

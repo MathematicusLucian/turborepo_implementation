@@ -1,51 +1,42 @@
-services:
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
+name: "electric_quickstart"
 
+services:
   postgres:
-    image: postgres:16-alpine
+    image: docker.io/postgres:16-alpine
+    environment: 
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "54321:5432"
+    volumes:          
+      - pgdata:/var/lib/postgresql/data
+    # tmpfs:
+    #   - /var/lib/postgresql/data
+    #   - /tmp
     command:
       - -c
       - listen_addresses=*
       - -c
       - wal_level=logical
-    ports:
-      - "5433:5433"
-    tmpfs:
-      - /var/lib/postgresql/data
-      - /tmp
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: ${POSTGRES_DB:-postgres}
-
-  pgbouncer:
-    image: brainsam/pgbouncer:latest
-    depends_on:
-      - postgres
-    ports:
-      - 6432:6432
-    environment:
-      DB_HOST: postgres
-      DB_USER: ${POSTGRES_USER}
-      DB_PASSWORD: ${POSTGRES_DB}
-      DB_port: 5432
-    links:
-      - postgres:postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   electric:
-    image: electricsql/electric:latest
-    depends_on:
-      - postgres
-    ports:
-      - "8003:3000"
+    image: docker.io/electricsql/electric:latest
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+      # Not suitable for production https://electric-sql.com/docs/guides/security
+      ELECTRIC_INSECURE: true
+      ELECTRIC_STORAGE_DIR: /var/lib/electric/persistent
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
-volumes:
-  redis_data:
-  postgres_data:
+volumes:                         
+  pgdata:

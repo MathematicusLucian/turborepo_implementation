@@ -166,6 +166,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20240405.0
         version: 4.20250805.0
+      '@electric-sql/client':
+        specifier: ^1.0.7
+        version: 1.0.7
       '@electric-sql/pglite':
         specifier: latest
         version: 0.3.7
@@ -178,6 +181,9 @@ importers:
       '@electric-sql/pglite-sync':
         specifier: 0.2.10
         version: 0.2.10(@electric-sql/pglite@0.3.7)
+      '@electric-sql/react':
+        specifier: ^1.0.7
+        version: 1.0.7(react@19.0.0-rc-459fd418-20241001)
       '@faker-js/faker':
         specifier: ^9.0.3
         version: 9.9.0
@@ -253,6 +259,9 @@ importers:
       util:
         specifier: ^0.12.5
         version: 0.12.5
+      uuid:
+        specifier: ^11.1.0
+        version: 11.1.0
     devDependencies:
       '@next/eslint-plugin-next':
         specifier: latest
@@ -614,6 +623,9 @@ packages:
   '@electric-sql/client@0.6.5':
     resolution: {integrity: sha512-0fCudhoNoryFRoIR2WU79gfSabrTeZvHVT7tfZAy/CzBk4TdWGRPJsYaEqd9IclCnRipoGO+5hUFYSBHdHqlBA==}
 
+  '@electric-sql/client@1.0.7':
+    resolution: {integrity: sha512-w9geRoZL1gn294Nn68YxicRvWFJEXWYPr+jZubSOyjaSa6tVQJk0rjYuFmOwpQyudFQrsL17HFrGga9UOaBhdA==}
+
   '@electric-sql/pglite-react@0.2.25':
     resolution: {integrity: sha512-xoYXpwO3Fc5vpZ4vh79KARHDFNaYWlDkmWlzGLsfZl/xIADBCcARVaQW9pzNxJJ5xoqYnk8svQyQVNamjTCjOw==}
     peerDependencies:
@@ -635,6 +647,14 @@ packages:
 
   '@electric-sql/pglite@0.3.7':
     resolution: {integrity: sha512-5c3mybVrhxu5s47zFZtIGdG8YHkKCBENOmqxnNBjY53ZoDhADY/c5UqBDl159b7qtkzNPtbbb893wL9zi1kAuw==}
+
+  '@electric-sql/react@1.0.7':
+    resolution: {integrity: sha512-48HNRzdgWqT4G2TEryKbh95K9OZd42mwUzyJ4rnBWUHOtXlQIoaQajEWgIgB/eNrspQwC/STvhAHYQ+2eQJxEw==}
+    peerDependencies:
+      react: '>=18.3.1 <20.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@emnapi/runtime@1.4.5':
     resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
@@ -1457,6 +1477,9 @@ packages:
 
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
+
+  '@microsoft/fetch-event-source@2.0.1':
+    resolution: {integrity: sha512-W6CLUJ2eBMw3Rec70qrsEW0jOm/3twwJv21mrmj2yORiaVmVYGS4sSS5yUwvQc1ZlDLYGPnClVWmUUMagKNsfA==}
 
   '@microsoft/tsdoc-config@0.16.2':
     resolution: {integrity: sha512-OGiIzzoBLgWWR0UdRJX98oYO+XKGf7tiK4Zk6tQ/E4IJqGCe7dvkTvgDZV5cFJUzLGDOjeAXrnZoA6QkVySuxw==}
@@ -5105,6 +5128,11 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
+  use-sync-external-store@1.5.0:
+    resolution: {integrity: sha512-Rb46I4cGGVBmjamjphe8L/UnvJD+uPPtTkNvX5mZgqdbavhI4EbgIWJiIHXJ8bc/i9EQGPRh4DwEURJ552Do0A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   utf8@2.0.0:
     resolution: {integrity: sha512-jWXHr+bQ8RsWazLzVY3V7XACPTbBHYSg/VoDVok+DBQk5ULm0AuBCNb9tGmjq2H+znnkBFwjhzzCbn9G3xlYcA==}
 
@@ -5123,6 +5151,10 @@ packages:
   utils-merge@1.0.0:
     resolution: {integrity: sha512-HwU9SLQEtyo+0uoKXd1nkLqigUWLB+QuNQR4OcmB73eWqksM5ovuqcycks2x043W8XVb75rG1HQ0h93TMXkzQQ==}
     engines: {node: '>= 0.4.0'}
+
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
+    hasBin: true
 
   validate-npm-package-license@3.0.4:
     resolution: {integrity: sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew==}
@@ -5571,6 +5603,12 @@ snapshots:
     optionalDependencies:
       '@rollup/rollup-darwin-arm64': 4.46.2
 
+  '@electric-sql/client@1.0.7':
+    dependencies:
+      '@microsoft/fetch-event-source': 2.0.1
+    optionalDependencies:
+      '@rollup/rollup-darwin-arm64': 4.46.2
+
   '@electric-sql/pglite-react@0.2.25(@electric-sql/pglite@0.3.7)(react@19.0.0-rc-459fd418-20241001)':
     dependencies:
       '@electric-sql/pglite': 0.3.7
@@ -5612,6 +5650,13 @@ snapshots:
       '@electric-sql/pglite': 0.3.7
 
   '@electric-sql/pglite@0.3.7': {}
+
+  '@electric-sql/react@1.0.7(react@19.0.0-rc-459fd418-20241001)':
+    dependencies:
+      '@electric-sql/client': 1.0.7
+      use-sync-external-store: 1.5.0(react@19.0.0-rc-459fd418-20241001)
+    optionalDependencies:
+      react: 19.0.0-rc-459fd418-20241001
 
   '@emnapi/runtime@1.4.5':
     dependencies:
@@ -6130,6 +6175,8 @@ snapshots:
       '@lezer/common': 1.2.3
 
   '@marijn/find-cluster-break@1.0.2': {}
+
+  '@microsoft/fetch-event-source@2.0.1': {}
 
   '@microsoft/tsdoc-config@0.16.2':
     dependencies:
@@ -10175,6 +10222,10 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
+  use-sync-external-store@1.5.0(react@19.0.0-rc-459fd418-20241001):
+    dependencies:
+      react: 19.0.0-rc-459fd418-20241001
+
   utf8@2.0.0: {}
 
   util-deprecate@1.0.2: {}
@@ -10194,6 +10245,8 @@ snapshots:
   utils-extend@1.0.8: {}
 
   utils-merge@1.0.0: {}
+
+  uuid@11.1.0: {}
 
   validate-npm-package-license@3.0.4:
     dependencies:

@@ -45,6 +45,21 @@ export function DataWorkerProvider({ children }: { children: React.ReactNode }):
         //     });
 
         setPg(pglite);
+
+        // pg.live.query(
+        // pglite.live.incrementalQuery(`SELECT * FROM users`, [], 'id', (data) => {
+        // pglite.live.incrementalQuery(`SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'`, [], 'table_name', (data) => {
+        // pglite.live.incrementalQuery(`SELECT * FROM INFORMATION_SCHEMA.TABLES`, [], 'table_name', (data) => {
+        //         pglite.live.incrementalQuery( // query
+        //             `SELECT * FROM information_schema.tables 
+        //    WHERE table_schema = 'public' 
+        //    AND table_name = 'users'`,
+        //             [],
+        //             'table_name',
+        //             (data) => {
+        //                 console.log(JSON.stringify(data.rows, null, 2))
+        //             }
+        //         )
     }
 
     useEffect(() => {
@@ -56,9 +71,16 @@ export function DataWorkerProvider({ children }: { children: React.ReactNode }):
 
     return (
         <div>
-            {/* <PGliteProvider db={pg}> */}
-            {children}
-            {/* </PGliteProvider> */}
+            <PGliteProvider
+                // @ts-expect-error: avoid type check
+                db={pg}
+            >
+                {children}
+            </PGliteProvider>
         </div>
     );
-} 
+}
+
+export interface ExtendedPGlite extends PGliteInterface {
+    _db?: PGliteInterface;
+}

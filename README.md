@@ -39,3 +39,14 @@ It is part of:
 
 `pnpm install --force` → sources, fetches, reinstalls secondary deps fresh
 pnpm update (updates and sources all deps, incl. secondary)
+
+`docker compose up` launches "electrified"-postgres
+
+Alternatively, you can run the Electric sync service on its own and connect it to an existing Postgres database, e.g.:
+```bash
+docker run \
+    -e "DATABASE_URL=postgresql://..." \
+    -p 3000:3000 \
+    -t \
+    electricsql/electric:latest
+```

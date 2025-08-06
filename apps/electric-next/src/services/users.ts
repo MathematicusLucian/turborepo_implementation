@@ -3,7 +3,8 @@ import { users } from "../schema/users";
 import { User, UserInsert } from "../schema/users";
 
 export interface UserService {
-  getUsers: (where?: SQL) => SQL<User[]>;
+  // getUsers: (where?: SQL) => SQL<User[]>;
+  getUsers: (where?: SQL) => { toSQL: () => { sql: string; params: any[]; }; };
   getUserById: (id: string) => SQL<User[]>;
   createUser: (userData: UserInsert) => SQL<User[]>;
   updateUser: (id: string, userData: Partial<UserInsert>) => SQL<User[]>;
@@ -12,9 +13,9 @@ export interface UserService {
 
 export function newUserService(db: any): UserService {
   return {
-    getUsers: (where?: SQL) => {
+    getUsers: (where?: SQL): { toSQL: () => { sql: string; params: any[]; }; } => {
       return db.select().from(users).where(where);
-    },
+    },//.toSQL();
     getUserById: (id: string) => {
       return db.select().from(users).where(eq(users.id, parseInt(id))).limit(1);
     },
