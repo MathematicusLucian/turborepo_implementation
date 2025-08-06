@@ -1,6 +1,5 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from 'pg'
-import * as schema from "./schema";
 
 export const queryClient = (poolConnectionString: any, maxClients: any) => new pg.Pool({
   connectionString: poolConnectionString,
@@ -8,5 +7,5 @@ export const queryClient = (poolConnectionString: any, maxClients: any) => new p
   max: Number(maxClients) || 10,
 });
 
-export const dbClient = (poolConnectionString: any, maxClients: any) => drizzle(queryClient(poolConnectionString, maxClients), { schema });
+export const dbClient = (poolConnectionString: any, maxClients: any, schema: any) => drizzle(queryClient(poolConnectionString, maxClients), { schema });
 export default dbClient;

@@ -1,17 +1,17 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "../db-client",
     "paths": {
-      "@repo/db-adapter/*": [
-        "./dist/*"
+      "@repo/db-client/*": [
+        "../db-client/dist/*"
       ]
     },
     "module": "ESNext", // required for ESM
     "moduleResolution": "bundler", // ensures .js extension in imports
     "noEmit": false, // ensure build emits output
-    "outDir": "./dist/",
-    "rootDir": "./src",
+    "outDir": "../db-client/dist",
+    "rootDir": "../db-client/src",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -20,10 +20,9 @@
   },
   "main": "dist/index.js",
   "include": [
-    "src",
-    "../../apps/api/drizzle.config.ts"
+    "../db-client/src"
   ],
   "exclude": [
-    "node_modules"
+    "../db-client/node_modules"
   ]
 }

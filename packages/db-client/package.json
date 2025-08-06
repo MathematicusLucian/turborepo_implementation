@@ -1,0 +1,30 @@
+{
+    "name": "@repo/db-client",
+    "type": "module",
+    "scripts": {
+        "build": "tsc",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "exports": {
+        ".": {
+            "types": "./src/index.ts",
+            "default": "./dist/index.js"
+        },
+        "./client/*": {
+            "types": "./src/client.ts",
+            "default": "./dist/client.js"
+        }
+    },
+    "dependencies": {
+        "drizzle-orm": "^0.33.0",
+        "drizzle-zod": "^0.5.1",
+        "pg": "^8.13.0"
+    },
+    "devDependencies": {
+        "@repo/typescript-config": "workspace:*",
+        "@types/node": "^22.7.4",
+        "@types/pg": "^8.11.10",
+        "drizzle-kit": "^0.24.2",
+        "typescript": "latest"
+    }
+}

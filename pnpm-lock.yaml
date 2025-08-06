@@ -47,9 +47,9 @@ importers:
       '@hono/zod-validator':
         specifier: ^0.3.0
         version: 0.3.0(hono@4.8.12)(zod@3.25.76)
-      '@repo/db-adapter':
+      '@repo/db-client':
         specifier: workspace:*
-        version: link:../../packages/db-adapter
+        version: link:../../packages/db-client
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -65,6 +65,12 @@ importers:
       drizzle-kit:
         specifier: ^0.24.2
         version: 0.24.2
+      drizzle-orm:
+        specifier: ^0.33.0
+        version: 0.33.0(@cloudflare/workers-types@4.20250805.0)(@types/pg@8.15.5)(@types/react@19.1.9)(pg@8.16.3)(postgres@3.4.7)(react@19.1.1)
+      drizzle-zod:
+        specifier: ^0.5.1
+        version: 0.5.1(drizzle-orm@0.33.0(@cloudflare/workers-types@4.20250805.0)(@types/pg@8.15.5)(@types/react@19.1.9)(pg@8.16.3)(postgres@3.4.7)(react@19.1.1))(zod@3.25.76)
       events:
         specifier: ^3.3.0
         version: 3.3.0
@@ -155,7 +161,7 @@ importers:
         specifier: latest
         version: 5.9.2
 
-  packages/db-adapter:
+  packages/db-client:
     dependencies:
       drizzle-orm:
         specifier: ^0.33.0
