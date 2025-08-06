@@ -1,16 +1,22 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors'
 import { zValidator } from '@hono/zod-validator';
-import { dbClient, schema } from '@repo/db-adapter';
-import { newUserService } from '@repo/db-adapter/services/users';
-import { usersInsertSchema } from '@repo/db-adapter/schema/users';
+import { dbClient } from '@repo/db-client';
+import * as schema from "./schema";
+import { newUserService } from './services/users';
+import { usersInsertSchema } from './schema/users';
 // import { poolConnectionString } from "./drizzle.config";
+/**
+ * This is the schema for the database.
+ * 💡Tip: you can use the `$` global variable to access goodies
+ * `Export` the tables
+ */
 
 const databaseConnection = (env: any) => {
     const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, PG_BOUNCER_PORT, PG_MAX_CLIENTS } = env;
     const poolConnectionString = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PG_BOUNCER_PORT}/${POSTGRES_DB}?sslmode=disable`;
     const maxClients = Number(PG_MAX_CLIENTS) || 10;
-    return dbClient(poolConnectionString, maxClients);
+    return dbClient(poolConnectionString, maxClients, schema);
 }
 
 const app = new Hono();
