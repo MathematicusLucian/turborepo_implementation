@@ -1,12 +1,12 @@
-// import { Users } from "@/components/users";
-// import { PgRepl } from "@/components/pgRep";
+// import { List } from "@/components/List";
+// import { Repl } from "@/components/Repl";
 export default function HomePage() {
 
   return (
     <div>
       <main className="flex flex-col items-center sm:items-start h-screen">
         Index
-        {/* <Users />
+        {/* <List />
         <PgRepl /> */}
       </main>
     </div>
