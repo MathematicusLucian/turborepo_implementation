@@ -7,7 +7,3 @@ module.exports = {
         project: true,
     },
 };
-
-// {
-//     //   "extends": ["next/core-web-vitals", "next/typescript"]
-// }

@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3002",
+    "dev": "next dev --port 3004",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
     "@cloudflare/workers-types": "^4.20240405.0",
     "@electric-sql/pglite": "latest",
     "@electric-sql/pglite-react": "latest",
