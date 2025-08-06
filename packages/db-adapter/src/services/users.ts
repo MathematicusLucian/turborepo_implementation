@@ -10,7 +10,7 @@ export interface UserService {
   deleteUser: (id: string) => SQL<User[]>;
 }
 
-export function createUserService(db: any): UserService {
+export function newUserService(db: any): UserService {
   return {
     getUsers: (where?: SQL) => {
       return db.select().from(users).where(where);

@@ -12,4 +12,3 @@ export type UserInsert = typeof users.$inferInsert;
 
 export const usersInsertSchema: any = createInsertSchema(users);
 export const usersSelectSchema: any = createSelectSchema(users);
-

@@ -23,10 +23,6 @@
         "./schema/*": {
             "types": "./src/schema/*.ts",
             "default": "./dist/schema/*.js"
-        },
-        "./add": {
-            "types": "./src/add/add.ts",
-            "default": "./dist/add/add.js"
         }
     },
     "dependencies": {
