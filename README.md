@@ -5,14 +5,33 @@
 The project is organized as a monorepo with the following main components:
 
 - `apps/`
-  - `api/`: Hono API server
-  - `ui1/`: Next.js frontend application
-  - `ui2/`: Next.js frontend application
+  - `api/`: Node.js API (Hono API; and Wrangler server)
+  - As a micro-frontend:
+    - `docs/`: [Next.js](https://nextjs.org) React (App Router) (no ElectricSQL)
+    - `electric-next/`: [Next.js](https://nextjs.org) React (App Router) with a BFF (Next Api Router) and ElectricSQL
 - `packages/`
-  - `db-client/`: Database schema and migrations
+  - `db-client/`: Database client (for Postgres). Database schema and migrations
   - `eslint-config/`: Shared EsLint configurations
   - `typescript-config/`: Shared TypeScript configurations
   - `ui`: Shared components, etc.
+
+## Stack
+
+- TypeScript
+- CSS: Tailwind
+- Database: Postgres DB
+- ORM (Drizzle)
+- PNPM
+
+## System 
+
+It is part of:
+- [TUrborepo](https://turborepo.com/)
+- Packages:
+  - Database client (for Postgres)
+  - Shared Eslint configs
+  - Shared Typescript configs
+  - Shared UI components library
 
 ## Commands
 

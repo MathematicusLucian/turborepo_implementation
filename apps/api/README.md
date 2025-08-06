@@ -1,96 +1,30 @@
+# ElectricNext
+
+This is:
+- Node.js API (Hono API; and Wrangler server)
+- TypeScript
+- CSS: Tailwind 
+- Database: Postgres DB
+- ORM (Drizzle)
+
+It is part of:
+- [Turborepo](https://turborepo.com/)
+- UI Apps as a micro-frontend:
+  - `docs/`: [Next.js](https://nextjs.org) React (App Router) (no ElectricSQL)
+  - `electric-next/`: [Next.js](https://nextjs.org) React (App Router) with a BFF (Next Api Router) and ElectricSQL
+- Packages:
+  - Database client (for Postgres)
+  - Shared Eslint configs
+  - Shared Typescript configs
+  - Shared UI components library
+  
 ## Getting Started
 
 First, run the development server:
 
-```
+```bash
 pnpm install --filter=api --dir apps/api # from the root
 pnpm dev
+open (in the browser) http://localhost:3000
 ```
-
-```
-open http://localhost:3000
-```
-
-```
-{
-  "name": "api",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "tsx watch src/index.ts --port 3003",
-    "lint": "eslint . --max-warnings 0"
-  },
-  "dependencies": {
-    "@repo/db": "workspace:*",
-    "@hono/node-server": "^1.13.1",
-    "@hono/zod-validator": "^0.3.0",
-    "hono": "^4.6.3"
-  },
-  "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
-    "@types/eslint": "catalog:",
-    "@types/node": "^20.11.17",
-    "@types/pg": "^8.11.10",
-    "autoprefixer": "^10",
-    "eslint": "catalog:",
-    "tsx": "^4.7.1",
-    "typescript": "catalog:"
-  }
-}
-```{
-  "extends": "@repo/typescript-config/node.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
-    "jsxImportSource": "hono/jsx",
-    "composite": true,
-    "incremental": true
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
-}
-
-
-{
-  "name": "api",
-  "version": "1.0.0",
-  "type": "module",
-  "private": false,
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "dev": "tsx watch src/index.ts --port 3003",
-    "build": "tsc",
-    "lint": "eslint . --max-warnings 0"
-  },
-  "dependencies": {
-    "@repo/db": "workspace:*",
-    "@hono/node-server": "^1.13.1",
-    "@hono/zod-validator": "^0.3.0",
-    "hono": "^4.6.3"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.17",
-    "@types/pg": "^8.11.10",
-    "autoprefixer": "^10",
-    "tsx": "^4.7.1",
-    "typescript": "^5.4.0"
-  }
-}
+ 
