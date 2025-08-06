@@ -1,8 +1,8 @@
-# Turborepo
+# Local-first Modular Monorepo
 
 ## Project Structure
 
-The project is organized as a monorepo with the following main components:
+The project is organized as a monorepo ([TurboRepo](https://turborepo.com/)) with the following main components:
 
 - `apps/`
   - `api/`: Node.js API (Hono API; and Wrangler server)
@@ -26,7 +26,7 @@ The project is organized as a monorepo with the following main components:
 ## System 
 
 It is part of:
-- [TUrborepo](https://turborepo.com/)
+- [TurboRepo](https://turborepo.com/)
 - Packages:
   - Database client (for Postgres)
   - Shared Eslint configs
