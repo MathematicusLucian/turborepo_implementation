@@ -18,10 +18,10 @@ app.get('/', (c) => {
     return c.json({ data: add(1, 2) })
 });
 
-// app.get('/api/users', async (c) => {
-//   const users = await getUsers();
-//   return c.json(users)
-// });
+app.get('/api/users', async (c) => {
+    const users = await getUsers();
+    return c.json(users)
+});
 
 // app.post('/api/users', zValidator('json', usersInsertSchema), async (c) => {
 //   // const data = c.req.valid('json')
@@ -35,17 +35,9 @@ app.get('/', (c) => {
 //   return c.json(user)
 // });
 
-// app.get('/api/posts', async (c) => {
-//   const posts = await db.select().from(schema.posts);
-//   return c.json(posts)
-// });
-
-// const port = 4000
-// console.log(`Server is running on port ${port}`)
-
-// serve({
-//   fetch: app.fetch,
-//   port
-// });
+app.get('/api/posts', async (c) => {
+    const posts = await db.select().from(schema.posts);
+    return c.json(posts)
+});
 
 export default app;
