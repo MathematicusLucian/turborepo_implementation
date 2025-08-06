@@ -1,5 +1,5 @@
 import { defineConfig } from "drizzle-kit";
-import { drizzleConfig } from "../drizzle.config";
+import { drizzleConfig } from "../../../../apps/api/drizzle.config";
 
 export const migrationsFolder = `./front/migrations`;
 

@@ -20,7 +20,8 @@
   },
   "main": "dist/index.js",
   "include": [
-    "src"
+    "src",
+    "../../apps/api/drizzle.config.ts"
   ],
   "exclude": [
     "node_modules"

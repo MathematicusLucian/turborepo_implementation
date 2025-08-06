@@ -1,14 +1,16 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors'
 import { zValidator } from '@hono/zod-validator';
-import { db, schema } from '@repo/db-adapter';
+import { dbClient, schema } from '@repo/db-adapter';
 import { newUserService } from '@repo/db-adapter/services/users';
 import { usersInsertSchema } from '@repo/db-adapter/schema/users';
+// import { poolConnectionString } from "./drizzle.config";
 
 const databaseConnection = (env: any) => {
-    const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, PG_BOUNCER_PORT } = env;
+    const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, PG_BOUNCER_PORT, PG_MAX_CLIENTS } = env;
     const poolConnectionString = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PG_BOUNCER_PORT}/${POSTGRES_DB}?sslmode=disable`;
-    return db(poolConnectionString);
+    const maxClients = Number(PG_MAX_CLIENTS) || 10;
+    return dbClient(poolConnectionString, maxClients);
 }
 
 const app = new Hono();

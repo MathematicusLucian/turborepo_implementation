@@ -4,8 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "wrangler dev src/index.ts --env staging --port 3003",
-        "dev1": "wrangler dev src/index.ts --port 3003",
-        "dev2": "dotenv -e .env -- wrangler dev src/index.ts --port 3003",
+        "dev1": "dotenv -e .env -- wrangler dev src/index.ts --port 3003",
         "deploy": "wrangler deploy --minify src/index.ts"
     },
     "dependencies": {
@@ -17,6 +16,7 @@
         "crypto": "^1.0.1",
         "dns": "^0.2.2",
         "dotenv": "^16.4.5",
+        "drizzle-kit": "^0.24.2",
         "events": "^3.3.0",
         "file-system": "^2.2.2",
         "fs": "0.0.1-security",
