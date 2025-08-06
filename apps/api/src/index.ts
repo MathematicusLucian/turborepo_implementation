@@ -6,11 +6,6 @@ import * as schema from "./schema";
 import { newUserService } from './services/users';
 import { usersInsertSchema } from './schema/users';
 // import { poolConnectionString } from "./drizzle.config";
-/**
- * This is the schema for the database.
- * 💡Tip: you can use the `$` global variable to access goodies
- * `Export` the tables
- */
 
 const databaseConnection = (env: any) => {
     const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, PG_BOUNCER_PORT, PG_MAX_CLIENTS } = env;
