@@ -1,6 +1,40 @@
 name: "electric_quickstart"
+# version: '3.8'
 
 services:
+  shell:
+    build: ./shell
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      APP_NAME: shell 
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  index:
+    build: ./index
+    ports:
+      - "3001:3000"
+    environment:
+      PORT: 3001
+      APP_NAME: index 
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+  app-two:
+    build: ./react-app
+    ports:
+      - "3002:3000"
+    environment:
+      PORT: 3002
+      APP_NAME: react-app
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD} 
+
   postgres:
     image: docker.io/postgres:16-alpine
     environment: 

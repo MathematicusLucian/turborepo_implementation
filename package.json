@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "----postinstall": "node ./scripts/copy-mf-bootstrap.js",
     "build": "turbo build",
     "build:1": "dotenv -- turbo run build",
     "build:all": "turbo run build  --include-dependencies",
@@ -28,7 +29,8 @@
     "db": "pnpm --filter @repo/db db",
     "ui": "pnpm --filter @repo/ui ui",
     "docker:up": "docker-compose up",
-    "docker:down": "docker-compose down"
+    "docker:down": "docker-compose down",
+    "build:run": "pnpm i && turbo build && turbo dev"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

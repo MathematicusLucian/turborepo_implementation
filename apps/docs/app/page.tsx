@@ -1,12 +1,10 @@
-// import { Button } from "@repo/ui/components/ui/button";
+import { Button } from "@repo/design-system/components/ui/button";
 
-// export default function Page() {
-//   return (
-//     <main>
-//       <Button>Calick me</Button>
-//     </main>
-//   );
-// }
-export default function Page() {
-  return <h1>Hello, Next.js!</h1>
+export default function HomePage() {
+  return (
+    <main>
+      <h1>Hello!</h1>
+      <Button>Click me</Button>
+    </main>
+  );
 }
