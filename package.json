@@ -1,7 +1,11 @@
 {
-  "name": "turborepo",
+  "name": "turborepo-nextjs-singlespa",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "----postinstall": "node ./scripts/copy-mf-bootstrap.js",
@@ -27,7 +31,7 @@
     "start:next": "turbo run start --filter='./apps/nextjs'",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "db": "pnpm --filter @repo/db db",
-    "ui": "pnpm --filter @repo/ui ui",
+    "ui": "pnpm --filter @repo/design-system ui",
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down",
     "build:run": "pnpm i && turbo build && turbo dev"
@@ -35,12 +39,13 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "prettier": "catalog:",
-    "turbo": "2.1.1",
     "@types/node": "^22.7.4",
+    "@types/prop-types": "^15.7.15",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
+    "prettier": "catalog:",
     "tsx": "^4.19.1",
+    "turbo": "2.1.1",
     "typescript": "^5.6.2"
   },
   "packageManager": "pnpm@9.12.0",
