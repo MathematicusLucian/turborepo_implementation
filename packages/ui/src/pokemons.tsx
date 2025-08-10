@@ -21,9 +21,7 @@ export const Pokemons = () => {
           })), // URL for the microfrontend
         activeWhen: ['/pokemons'], // Activate on the root or specific route
       });
-
-      // Start single-spa
-      start();
+      start(); // Start single-spa
     }
   }, []);
 

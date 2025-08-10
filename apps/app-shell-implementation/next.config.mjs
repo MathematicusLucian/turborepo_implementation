@@ -1,16 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@repo/ui"],
+  transpilePackages: ["@repo/design-system"],
   async redirects() {
     return [
       {
         source: '/',
-        destination: '/pokemons',
+        destination: '/landing',
         permanent: true,
       },
       {
-        source: '/pokemons/:id/:slug',
-        destination: '/pokemons',
+        source: '/landing/:id/:slug',
+        destination: '/landing',
         permanent: true,
       },
     ]

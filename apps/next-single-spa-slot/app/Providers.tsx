@@ -1,6 +1,9 @@
 'use client'
+import React from "react";
 import { useRouter } from 'next/navigation'
-import { Navigation } from "@repo/ui/navigation";
+// import { Navigation } from "@repo/ui/navigation";
+import dynamic from "next/dynamic";
+const Navigation = dynamic(() => import("@repo/ui/navigation").then(mod => mod.Navigation), { ssr: false });
 
 const Providers = ({
   children,
@@ -21,7 +24,7 @@ const Providers = ({
 
   return (
     <>
-      <Navigation menuItems={menuItems} onMenuItemClick={handleMenuItemClick} />
+      {/* <Navigation menuItems={menuItems} onMenuItemClick={handleMenuItemClick} /> */}
       {children}
     </>
   );

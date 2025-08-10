@@ -4,7 +4,6 @@ interface MenuItem {
   label: string;
   path: string;
 }
-
 interface NavigationProps {
   menuItems: MenuItem[] | [];
   onMenuItemClick: (menuItem: MenuItem) => void;

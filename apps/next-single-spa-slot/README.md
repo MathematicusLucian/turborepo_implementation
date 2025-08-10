@@ -1,21 +1,6 @@
-# Next
+# next-single-spa-slot
 
-This is:
-- Apps (as a micro-frontend): [Next.js](https://nextjs.org) 
-- TypeScript
-- CSS: Tailwind 
-- Database: Postgres DB
-- ORM (Drizzle)
-
-It is part of:
-- [TUrborepo](https://turborepo.com/)
-- API Apps:
-  -  Node.js API (Hono API; and Wrangler server)
-- Packages:
-  - Database client (for Postgres)
-  - Shared Eslint configs
-  - Shared Typescript configs
-  - Shared UI components library
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
 
 ## Getting Started
 
@@ -24,7 +9,7 @@ First, run the development server:
 ```bash
 npm run dev
 # or
-yarn dev#
+yarn dev
 # or
 pnpm dev
 # or
@@ -35,7 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
