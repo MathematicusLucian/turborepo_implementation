@@ -1,5 +1,5 @@
 import React from "react";
-import { Pokemons } from "@repo/ui/pokemons";
+import { Pokemons } from "@repo/pokemons/pokemons";
 
 export default async function PokemonPage() {
 

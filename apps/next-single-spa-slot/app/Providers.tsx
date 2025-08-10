@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from 'next/navigation'
 // import { Navigation } from "@repo/ui/navigation";
 import dynamic from "next/dynamic";
-const Navigation = dynamic(() => import("@repo/ui/navigation").then(mod => mod.Navigation), { ssr: false });
+const Navigation = dynamic(() => import("@repo/pokemons/navigation").then(mod => mod.Navigation), { ssr: false });
 
 const Providers = ({
   children,
