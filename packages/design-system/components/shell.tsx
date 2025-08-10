@@ -8,7 +8,7 @@ import {
     useMantineTheme,
 } from "@mantine/core";
 import { useAppShell } from "../hooks/useAppShell";
-// import { useAppShell } from "@repo/ui/hooks/useAppShell"; 
+// import { useAppShell } from "@repo/design-system/hooks/useAppShell"; 
 
 interface ShellProps {
     title: string;

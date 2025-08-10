@@ -1,0 +1,40 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
+// {
+//     "extends": "../../tsconfig.json",
+//     "compilerOptions": {
+//         "outDir": "dist",
+//         "jsx": "react-jsx",
+//         "lib": [
+//             "ES2022",
+//             "DOM",
+//             "DOM.Iterable"
+//         ],
+//         "baseUrl": ".",
+//         "paths": {
+//             "@repo/*": [
+//                 "../*"
+//             ],
+//         },
+//         "composite": true // Mark as composite for Turborepo
+//     },
+//     "include": [
+//         "**/*.ts",
+//         "**/*.tsx"
+//     ],
+//     "exclude": [
+//         "node_modules",
+//         "dist"
+//     ]
+// }
