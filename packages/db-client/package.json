@@ -18,7 +18,8 @@
     "dependencies": {
         "drizzle-orm": "^0.33.0",
         "drizzle-zod": "^0.5.1",
-        "pg": "^8.13.0"
+        "pg": "^8.13.0",
+        "ulidx": "^2.4.1"
     },
     "devDependencies": {
         "@repo/typescript-config": "workspace:*",

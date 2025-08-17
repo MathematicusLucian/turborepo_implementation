@@ -1,1 +1,1 @@
-export { dbClient } from './client';
+export { dbClient, dbDrizzleClient } from './client';

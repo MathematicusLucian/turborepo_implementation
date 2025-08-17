@@ -1,12 +1,20 @@
-import * as schema from "../persistence-layer/schema";
-import { newUserService } from '../business-layer/services/users.service';
-import { usersInsertSchema } from '../persistence-layer/schema/users'; 
-import { dbClient } from '@repo/db-client';
-// import { poolConnectionString } from "./drizzle.config";
+import { users } from '../persistence-layer/orm-schema'
+import { dbClient, dbDrizzleClient } from '@repo/db-client'
 
 export const databaseConnection = (env: any) => {
-    const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB, PG_BOUNCER_PORT, PG_MAX_CLIENTS } = env;
+    const { 
+        POSTGRES_USER, 
+        POSTGRES_PASSWORD, 
+        POSTGRES_HOST, 
+        PG_BOUNCER_PORT, 
+        POSTGRES_DB, 
+        PG_MAX_CLIENTS,
+        PG_SSL_REQUIRE
+    } = env;
     const poolConnectionString = `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${PG_BOUNCER_PORT}/${POSTGRES_DB}?sslmode=disable`;
     const maxClients = Number(PG_MAX_CLIENTS) || 10;
-    return dbClient(poolConnectionString, maxClients, schema);
+
+    const pool = dbClient(poolConnectionString, maxClients, users);
+    const drizzlePool = dbDrizzleClient(poolConnectionString, maxClients, users);
+    return { pool, drizzlePool };
 }

@@ -1,58 +1,59 @@
-import { eq, SQL } from "drizzle-orm";
-import { users, usersInsertSchema } from '../../persistence-layer/schema/users'; 
+// import { users, usersInsertSchema } from '../../persistence-layer/schema/users'; 
 // import { users } from "../schema/users";
 // import { User, UserInsert } from "../schema/users";
-import type { UserDomain } from '../user.domain'
 import type { UserRepository } from '../../persistence-layer/user.repository'
+import { NewUserDTO, UserDTO } from '../user.dto' 
+import type { User as UserDomain } from '../user.domain'
 
 // export interface UserService {
-//   getUsers: (where?: SQL) => SQL<User[]>;
+//   getUsers: (c: any) => SQL<User[]>;
 //   getUserById: (id: string) => SQL<User[]>;
 //   createUser: (userData: UserInsert) => SQL<User[]>;
 //   updateUser: (id: string, userData: Partial<UserInsert>) => SQL<User[]>;
 //   deleteUser: (id: string) => SQL<User[]>;
 // }
 
-export class UserService {
-// export function UserService(db: any): UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+export class UserService { // export function UserService(db: any): UserService {
+  constructor(private readonly userRepository: UserRepository) {} 
 
-  async create(user: typeof users.$inferInsert): Promise<UserDomain> {
-    return this.userRepository.create(user)
+  async getUsers(c: any): Promise<UserDTO[]> {  
+    const users: UserDomain[] = await this.userRepository.findAll(c); 
+    const usersDTOsInstance: UserDTO[] = users.map((u: any) => {
+      return {
+        id: u.id,
+        name: u.name,
+        createdAt: u.createdAt
+      }
+    })
+    return usersDTOsInstance;
   }
 
-  async findAll(): Promise<UserDomain[]> {
-    return this.userRepository.findAll()
-  }
 
-  async findById(id: string): Promise<UserDomain[]> {
-    return this.userRepository.findById(id)
-  }
+  // async create(user: typeof users.$inferInsert): Promise<UserDomain> {
+  //   return this.userRepository.create(user)
+  // }
+  // createUser(data: NewUserDTO): Promise<UserDTO> {
+  //   // Example business rule: name must not be empty
+  //   if (!data.name.trim()) throw new Error('Name cannot be empty')
+  //   return this.userRepository.create(data)
+//   //     if (typeof userData.name !== 'string') {
+//   //       throw new Error('Name is required and must be a string');
+//   //     }
+//   //     return db.insert(users).values(userData as typeof users.$inferInsert).returning();
+  // }
 
-  async delete(id: string): Promise<UserDomain> {
-    return this.userRepository.delete(id)
-  } 
+//   async findById(id: string): Promise<UserDomain[]> {
+//     return this.userRepository.findById(id)
+//   //     return db.select().from(users).where(eq(users.id, parseInt(id))).limit(1);
+//   }
 
-  // return {
-  //   getUsers: (where?: SQL) => {
-  //     return db.select().from(users).where(where);
-  //   },
-  //   getUserById: (id: string) => {
-  //     return db.select().from(users).where(eq(users.id, parseInt(id))).limit(1);
-  //   },
-  //   createUser: (userData: UserInsert) => {
-  //     if (typeof userData.name !== 'string') {
-  //       throw new Error('Name is required and must be a string');
-  //     }
-  //     return db.insert(users).values(userData as typeof users.$inferInsert).returning();
-  //   },
+//   //   updateUser: (id: string, userData: Partial<UserInsert>) => {
+//   //     return db.update(users).set(userData).where(eq(users.id, parseInt(id))).returning();
+//   //   },
 
-  //   updateUser: (id: string, userData: Partial<UserInsert>) => {
-  //     return db.update(users).set(userData).where(eq(users.id, parseInt(id))).returning();
-  //   },
+//   async delete(id: string): Promise<UserDomain> {
+//     return this.userRepository.delete(id)
+//   //     return db.delete(users).where(eq(users.id, parseInt(id))).returning();
+//   } 
 
-  //   deleteUser: (id: string) => {
-  //     return db.delete(users).where(eq(users.id, parseInt(id))).returning();
-  //   }
-  // };
 }
