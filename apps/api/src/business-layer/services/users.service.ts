@@ -30,6 +30,7 @@ export class UserService implements UserService{
   }
 
   async create(c: any, userData: any): Promise<UserDomain> { // NewUserDTO  // typeof users.$inferInsert
+    console.log(userData)
     return this.userRepository.create(c, userData)  
   }
 

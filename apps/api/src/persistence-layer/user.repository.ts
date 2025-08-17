@@ -57,13 +57,7 @@ export class DrizzleUserRepository implements UserRepository {
       }).returning()
     } catch (err) {
       return c.json({"err": err})
-    }
-    // const u: any = inserted[0]
-    // return {
-    //   id: u.id,
-    //   name: u.name,
-    //   createdAt: u.createdAt.toISOString(),
-    // }
+    } 
     const userCreated: UserDomain = new User(inserted[0].id, inserted[0].name,  inserted[0].createdAt)
     return userCreated
   }
