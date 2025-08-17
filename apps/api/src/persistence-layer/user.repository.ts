@@ -2,14 +2,16 @@
 import { databaseConnection } from '../data-layer/db';  
 import { NewUserDTO, UserDTO } from '../business-layer/user.dto'
 import { users as userSchema } from './orm-schema'    
+import {User} from '../business-layer/user.domain'
 import type { User as UserDomain } from '../business-layer/user.domain'
+import { eq } from 'drizzle-orm';
 
 export interface UserRepository {
-  // create(user: typeof users.$inferInsert): Promise<UserDomain>
-  // findAll(): Promise<UserDomain[]>
   findAll(c: any): Promise<UserDomain[]>
-  // findById(id: string): Promise<UserDomain[]>
-  // delete(id: string): Promise<UserDomain>
+  findById(c: any, id: string): Promise<UserDomain>
+  create(c: any, userData: any): Promise<UserDomain> // typeof users.$inferInsert
+  update(c: any, id: string, userData: any): Promise<UserDomain>
+  delete(c: any, id: string): Promise<UserDomain>
 }
 
 export class DrizzleUserRepository implements UserRepository {
@@ -28,62 +30,65 @@ export class DrizzleUserRepository implements UserRepository {
       } catch (err) {
         return c.json({"err": err})
       }  
-      return usersFromDrizzle
+      return usersFromDrizzle 
   } 
-
-  // async create(user: typeof users.$inferInsert): Promise<UserDomain> {
-  //   // const result = await this.db.insert(users).values(user).returning()
-  //   //     if (typeof userData.name !== 'string') {
-  //   //       throw new Error('Name is required and must be a string');
-  //   //     }
-  //   //     return db.insert(users).values(userData as typeof users.$inferInsert).returning();
-  //   // return result[0]
-  //   const result = {
-  //     id: 1,
-  //     name: "stzring",
-  //     createdAt: new Date()
-  //   };
-  //   return result
-  // }
-  // async create(data: NewUserDTO): Promise<UserDTO> {
-  //   const inserted = await db.insert(users).values({
-  //     name: data.name,
-  //     email: data.email,
-  //   }).returning()
-  //   const u = inserted[0]
-  //   return { id: u.id, name: u.name, email: u.email, createdAt: u.createdAt.toISOString() } 
-  //   const u = new User(inserted[0].id, inserted[0].name, inserted[0].email, inserted[0].createdAt)
-  //   return {
-  //     id: u.id,
-  //     name: u.name,
-  //     email: u.email,
-  //     createdAt: u.createdAt.toISOString(),
-  //   }
-  // }
  
-  // async findById(id: string): Promise<UserDomain[]> {
-  //   // const result = await this.db.select().from(users).where(eq(users.id, id))
-  //   //     return db.select().from(users).where(eq(users.id, parseInt(id))).limit(1);
-  //   const result = [{
-  //     id: 1,
-  //     name: "stzring",
-  //     createdAt: new Date()
-  //   }];
-  //   return result 
-  // }
+  async findById(c: any, id: string): Promise<UserDomain> {
+    let userFromDrizzle: UserDomain[];
+      try {
+        const dbAdapter = databaseConnection(c.env);  
+        userFromDrizzle = await dbAdapter.drizzlePool.select().from(userSchema).where(eq(userSchema.id, parseInt(id))).limit(1);
+      } catch (err) {
+        return c.json({"err": err})
+      }
+    return userFromDrizzle[0]
+  }
 
-  // // Update
-  // //     return db.update(users).set(userData).where(eq(users.id, parseInt(id))).returning();
+  async create(c: any, userData: any): Promise<UserDomain> {
+  // async create(data: NewUserDTO): Promise<UserDTO> {
+  // async create(user: typeof users.$inferInsert): Promise<UserDomain> {
+    // const inserted = await this.db.insert(users).values(user).returning() //return db.insert(users).values(userData as typeof users.$inferInsert).returning();
+    // return result[0]
+    let inserted: any[] | any;
+    try {
+      const dbAdapter = databaseConnection(c.env); 
+      inserted = await dbAdapter.drizzlePool.insert(userSchema).values({
+        name: userData.name,
+      }).returning()
+    } catch (err) {
+      return c.json({"err": err})
+    }
+    // const u: any = inserted[0]
+    // return {
+    //   id: u.id,
+    //   name: u.name,
+    //   createdAt: u.createdAt.toISOString(),
+    // }
+    const userCreated: UserDomain = new User(inserted[0].id, inserted[0].name,  inserted[0].createdAt)
+    return userCreated
+  }
 
-  // async delete(id: string): Promise<UserDomain> {
-  //   // const result = await this.db.delete(users).where(eq(users.id, id)).returning()
-  // //     return db.delete(users).where(eq(users.id, parseInt(id))).returning();
-  //   // return result[0]
-  //   const result = {
-  //     id: 1,
-  //     name: "stzring",
-  //     createdAt: new Date()
-  //   };
-  //   return result
-  // }
+  async update(c: any, id: any, userData: any): Promise<UserDomain> {
+    let updated: any[]|any;
+    try {
+      const dbAdapter = databaseConnection(c.env); 
+      updated = dbAdapter.drizzlePool.update(userSchema).set(userData).where(eq(userSchema.id, parseInt(id))).returning();
+    } catch (err) {
+      return c.json({"err": err})
+    }
+    return updated
+  }
+
+  async delete(c: any, id: string): Promise<UserDomain> {
+    let deleted: any[]|any;
+    try {
+      const dbAdapter = databaseConnection(c.env); 
+      deleted = dbAdapter.drizzlePool.delete(userSchema).where(eq(userSchema.id, parseInt(id))).returning();
+      // return db.delete(users).where(eq(users.id, parseInt(id))).returning(); 
+      //await this.db.delete(users).where(eq(users.id, id)).returning()
+    } catch (err) {
+      return c.json({"err": err})
+    }  
+    return deleted
+  }
 }

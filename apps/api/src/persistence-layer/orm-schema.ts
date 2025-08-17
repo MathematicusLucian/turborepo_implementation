@@ -7,10 +7,10 @@ import { integer, serial, text, pgTable, timestamp } from "drizzle-orm/pg-core";
 // Table definitions
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
-  // id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
   name: text('name').notNull(),
-  // email: text('email').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
+  // id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
+  // email: text('email').notNull(),
   // createdAt: timestamp("created_at", { precision: 3 }).notNull().defaultNow(),
   // createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
   // email: text('email').unique().notNull(),

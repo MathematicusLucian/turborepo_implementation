@@ -12,16 +12,18 @@ export class User {
         this.name = name;
         // this.email = email;
         this.createdAt = createdAt;
-    }
-//   constructor(
-//     public id: number,
-//     public name: string,
-//     // public email: string,
-//     public createdAt: Date
-//   ) {}
+    } 
 
   // Validate the field and apply business rules if necessary
 //   isEmailGmail(): boolean {
 //     return this.email.endsWith('@gmail.com')
 //   }
 }
+  //   // Example business rule: name must not be empty
+  //   if (!data.name.trim()) throw new Error('Name cannot be empty')
+//   //     if (typeof userData.name !== 'string') {
+//   //       throw new Error('Name is required and must be a string');
+//   //     }
+  //   //     if (typeof userData.name !== 'string') {
+  //   //       throw new Error('Name is required and must be a string');
+  //   //     }
