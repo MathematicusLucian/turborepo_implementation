@@ -17,6 +17,10 @@ It is part of:
   - Shared Eslint configs
   - Shared Typescript configs
   - Shared UI components library
+
+## Architecture
+
+![](./architecture.png)
   
 ## Getting Started
 
