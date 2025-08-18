@@ -1,6 +1,12 @@
 import type { IUserRepository } from '../../persistence-layer/user.repository'
-import { NewUserDTO, UserDTO } from '../user.dto' 
+import { UserDTO } from '../user.dto' 
 import type { User as UserDomain } from '../user.domain'
+
+export const userFromDTO = (u: UserDomain): UserDTO => ({
+  id: u.id,
+  name: u.name,
+  createdAt: u.createdAt?.toString() || ''
+});
 
 export interface IDataService<T> { 
   getAll(c: any): Promise<T[]>; 
@@ -18,13 +24,8 @@ export class UserService implements IUserService{
 
   async getAll(c: any): Promise<UserDTO[]> {  
     const users: UserDomain[] = await this.userRepository.findAll(c); 
-    const usersDTOsInstance: UserDTO[] = users.map((u: any) => {
-      return {
-        id: u.id,
-        name: u.name,
-        createdAt: u.createdAt
-      }
-    })
+    // Arugably the mapping should be in the controller, but I have put it here as business logic 
+    const usersDTOsInstance: UserDTO[] = users.map(userFromDTO)
     return usersDTOsInstance;
   }
 
