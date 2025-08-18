@@ -6,14 +6,10 @@ import { integer, serial, text, pgTable, timestamp } from "drizzle-orm/pg-core";
 
 // Table definitions
 export const users = pgTable('users', {
-  id: serial('id').primaryKey(),
+  id: serial('id').primaryKey(), //  integer("id").primaryKey().generatedByDefaultAsIdentity(),
   name: text('name').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
-  // id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-  // email: text('email').notNull(),
-  // createdAt: timestamp("created_at", { precision: 3 }).notNull().defaultNow(),
-  // createdAt: text('created_at').default(sql`(CURRENT_TIMESTAMP)`),
-  // email: text('email').unique().notNull(),
+  createdAt: timestamp('created_at').defaultNow(), // text('created_at').default(sql`(CURRENT_TIMESTAMP)`), // timestamp("created_at", { precision: 3 }).notNull().defaultNow(),
+  // email: text('email').notNull(), // text('email').unique().notNull(),
   // password: text('password'),
   // image: text('image'),
   // provider: text('provider'),

@@ -30,16 +30,14 @@ export class UserService implements UserService{
   }
 
   async create(c: any, userData: any): Promise<UserDomain> { // NewUserDTO  // typeof users.$inferInsert
-    console.log(userData)
     return this.userRepository.create(c, userData)  
   }
 
-  async update(c: any, id: string, userData: Partial<any>): Promise<any> { // UserInsert
+  async update(c: any, id: string, userData: any): Promise<any> { // UserInsert //  userData: Partial<any>
     return this.userRepository.update(c, id, userData) 
   }
 
   async delete(c: any, id: string): Promise<UserDomain> {
     return this.userRepository.delete(c, id)
   } 
-
 }

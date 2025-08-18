@@ -17,19 +17,19 @@ export const usersGetById = F.createHandlers(async (c: any) => {
  
 export const createUser = F.createHandlers(async (c: any) => { 
     const { userService } = c.get('services')
-    const newUser = await c.req.json()
+    const newUserData = await c.req.json()
     // const validatedUser = usersInsertSchema.safeParse(newUser)
     // if (!validatedUser.success) {
     //  return c.json({ error: validatedUser.error }, 400)
     // } 
-    const response: UserDTO = await userService.create(c, newUser) // validatedUser.data)  
+    const response: UserDTO = await userService.create(c, newUserData) // validatedUser.data)  
     return c.json(response) 
 })
 
 export const updateUser = F.createHandlers(async (c: any) => { 
     const { userService } = c.get('services')
-    // const {id, userData} = await c.req.json()
-    const response = await userService.update(c, c.req.param('id'), c.req.param('userData'))  
+    const updatedUserData = await c.req.json()
+    const response = await userService.update(c, c.req.param('id'), updatedUserData)  
     return c.json(response)
 })
 

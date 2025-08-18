@@ -1,6 +1,6 @@
 // DAO 
 import { databaseConnection } from '../data-layer/db';  
-import { NewUserDTO, UserDTO } from '../business-layer/user.dto'
+// import { NewUserDTO, UserDTO } from '../business-layer/user.dto'
 import { users as userSchema } from './orm-schema'    
 import {User} from '../business-layer/user.domain'
 import type { User as UserDomain } from '../business-layer/user.domain'
@@ -44,11 +44,7 @@ export class DrizzleUserRepository implements UserRepository {
     return userFromDrizzle[0]
   }
 
-  async create(c: any, userData: any): Promise<UserDomain> {
-  // async create(data: NewUserDTO): Promise<UserDTO> {
-  // async create(user: typeof users.$inferInsert): Promise<UserDomain> {
-    // const inserted = await this.db.insert(users).values(user).returning() //return db.insert(users).values(userData as typeof users.$inferInsert).returning();
-    // return result[0]
+  async create(c: any, userData: any): Promise<UserDomain> { // userData: typeof users.$inferInsert // NewUserDTO 
     let inserted: any[] | any;
     try {
       const dbAdapter = databaseConnection(c.env); 
@@ -78,8 +74,6 @@ export class DrizzleUserRepository implements UserRepository {
     try {
       const dbAdapter = databaseConnection(c.env); 
       deleted = dbAdapter.drizzlePool.delete(userSchema).where(eq(userSchema.id, parseInt(id))).returning();
-      // return db.delete(users).where(eq(users.id, parseInt(id))).returning(); 
-      //await this.db.delete(users).where(eq(users.id, id)).returning()
     } catch (err) {
       return c.json({"err": err})
     }  
