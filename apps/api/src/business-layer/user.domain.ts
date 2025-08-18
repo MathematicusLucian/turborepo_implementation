@@ -19,11 +19,11 @@ export class User {
 //     return this.email.endsWith('@gmail.com')
 //   }
 }
-  //   // Example business rule: name must not be empty
-  //   if (!data.name.trim()) throw new Error('Name cannot be empty')
-//   //     if (typeof userData.name !== 'string') {
-//   //       throw new Error('Name is required and must be a string');
-//   //     }
-  //   //     if (typeof userData.name !== 'string') {
-  //   //       throw new Error('Name is required and must be a string');
-  //   //     }
+    // Example business rule: name must not be empty
+    // if (!data.name.trim()) throw new Error('Name cannot be empty')
+    // if (typeof userData.name !== 'string') {
+    //   throw new Error('Name is required and must be a string');
+    // }
+    // if (typeof userData.name !== 'string') {
+    //   throw new Error('Name is required and must be a string');
+    // }

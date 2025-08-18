@@ -1,3 +1,5 @@
+// Repo: Facades/simplified interface to persistence tech (domain entity persistence/retrieval: ORMs)
+// Persistence/infrastructure layer
 // DAO 
 import { databaseConnection } from '../data-layer/db';  
 // import { NewUserDTO, UserDTO } from '../business-layer/user.dto'
@@ -6,15 +8,20 @@ import {User} from '../business-layer/user.domain'
 import type { User as UserDomain } from '../business-layer/user.domain'
 import { eq } from 'drizzle-orm';
 
-export interface UserRepository {
-  findAll(c: any): Promise<UserDomain[]>
-  findById(c: any, id: string): Promise<UserDomain>
-  create(c: any, userData: any): Promise<UserDomain> // typeof users.$inferInsert
-  update(c: any, id: string, userData: any): Promise<UserDomain>
-  delete(c: any, id: string): Promise<UserDomain>
+export interface IRepo<T> {
+  // exists(c: any, t: T): Promise<boolean>; 
+  // save(c: any, t: T): Promise<any>;
+  findAll(c: any): Promise<T[]>
+  findById(c: any, id: string): Promise<T>
+  delete(c: any, id: string): Promise<any>; 
 }
 
-export class DrizzleUserRepository implements UserRepository {
+export interface IUserRepository extends IRepo<UserDomain>{
+  create(c: any, userData: any): Promise<UserDomain> // typeof users.$inferInsert
+  update(c: any, id: string, userData: any): Promise<UserDomain>
+}
+
+export class DrizzleUserRepository implements IUserRepository {
   constructor() {} 
 
   async findAll(c: any): Promise<UserDomain[]> {

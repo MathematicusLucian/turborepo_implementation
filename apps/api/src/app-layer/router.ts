@@ -5,17 +5,21 @@
 // - persisting a domain entity to the database (repository responsibility)
 
 import { Hono } from 'hono'
+import { createFactory } from 'hono/factory'  
+import { UserService } from './users.handler'
+import { User } from '../business-layer/user.domain'
 import { zValidator } from '@hono/zod-validator'
-import { usersGet, usersGetById, createUser, updateUser, usersDelete } from './users.handler'
 
 const apiHandler = new Hono()
+const userRouter = new UserService(createFactory())
 
 const _h = apiHandler
-  .get('/user/all', ...usersGet)
-  .get('/user/:id', ...usersGetById)
-  .post('/user/create', ...createUser)
-  .post('/user/update/:id', ...updateUser)
-  .delete('/user/delete/:id', ...usersDelete) // .delete('/users/:id', zValidator('json', users), ...usersDelete)
+  .get('/user/all', ...userRouter.usersGet())
+  .get('/user/:id', ...userRouter.usersGetById())
+  .post('/user/create', ...userRouter.createUser())
+  .post('/user/update/:id', ...userRouter.updateUser())
+  .delete('/user/delete/:id', ...userRouter.usersDelete()) 
+  // .delete('/users/:id', zValidator('json', User), ...usersDelete)
   // some other routes 
   .get('/check', (c) => {
     return c.json({ status: 'ok' }, 200)
